@@ -1,4 +1,6 @@
 {
     "expireDate":1668291200000,
-    "message":"插件过期，等待通知"
+    "message":"插件过期，等待通知",
+    "isPush":true,
+    "push":"欢迎使用"
 }
