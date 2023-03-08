@@ -2,5 +2,7 @@
     "expireDate":1678291200000,
     "message":"插件过期，等待通知",
     "isPush":0,
-    "push":"欢迎使用"
+    "push":"欢迎使用",
+    "version":"1.0.1",
+    "updateMsg":"发现新版本，旧版本不再使用"
 }
