@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MTpupil</title>
+    <!-- 引入样式文件 -->
+    <link rel="stylesheet" href="https://unpkg.com/vant@2.12/lib/index.css" />
+    <!-- 引入 Vue 和 Vant 的 JS 文件 -->
+    <script src="https://unpkg.com/vue@2.6/dist/vue.min.js"></script>
+    <script src="https://unpkg.com/vant@2.12/lib/vant.min.js"></script>
+    <script>function checkDate() {
+            var body = document.querySelector("body");
+            body.style.display = "none";
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', 'http://api.m.taobao.com/rest/api3.do?api=mtop.common.getTimestamp');
+            xhr.send();
+
+            //版本控制
+
+            var version = "1.0.0";
+            xhr.onload = function () {
+                if (xhr.status == 200) {
+                    var timestamp = JSON.parse(xhr.responseText).data.t;
+                    var xhr2 = new XMLHttpRequest();
+                    xhr2.open('GET', 'https://ghproxy.com/https://raw.githubusercontent.com/MTpupil/WeChat/main/gzh/shiju.json');
+                    xhr2.send();
+                    xhr2.onload = function () {
+                        if (xhr2.status == 200) {
+
+                            var newVersion = JSON.parse(xhr2.responseText).version;
+
+                            const version1Numbers = version.split('.').map(Number);
+                            const version2Numbers = newVersion.split('.').map(Number);
+
+                            for (let i = 0; i < version1Numbers.length; i++) {
+                                if (version1Numbers[i] < version2Numbers[i]) {
+
+                                    alert(JSON.parse(xhr2.responseText).updateMsg);
+                                    location.href = 'about:blank';
+return;
+                                }
+                            }
+                            var expire = JSON.parse(xhr2.responseText).expire;
+                            var message = JSON.parse(xhr2.responseText).message;
+                            var isPush = JSON.parse(xhr2.responseText).isPush;
+                            if (isPush == 1) {
+                                alert(JSON.parse(xhr2.responseText).push)
+                            }
+
+                            if (timestamp > expire) {
+                                alert(message);
+                                location.href = 'about:blank';
+                            }
+body.style.display="block"
+}else {
+                            alert("时间验证失败，请保持网络畅通");
+                            location.href = 'about:blank';
+                        }
+                    }
+                } else {
+                    alert("时间验证失败，请保持网络畅通");
+                    location.href = 'about:blank';
+                }
+            }
+        }
+                    </script>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        /*菜单*/
+
+        *:not(input, checkbox, textarea) {
+            /*禁止文本选择*/
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            user-select: none;
+            /* Non-prefixed version, currently */
+        }
+
+        .app {
+            -webkit-backdrop-filter: blur(5px);
+        }
+
+        .aymenu {
+            /*菜单*/
+            position: fixed;
+            width: 240px;
+            height: 370px;
+            top: calc(40% - 180px);
+            left: calc(40% - 180px);
+            z-index: 456;
+            border-radius: 20px;
+            overflow: hidden;
+            font-weight: bold;
+            -webkit-backdrop-filter: blur(10px);
+            color: #fff;
+            box-shadow: 0 0 30px 10px rgba(0, 0, 0, 0.8);
+        }
+
+
+
+        .van-nav-bar__title {
+            /* 标题文字 */
+            max-width: 60%;
+            margin: 0 auto;
+            color: #ffffff;
+            font-weight: 500;
+            font-size: 16px;
+            font-weight: 800;
+
+        }
+
+        .fun-block__title {
+            /* 关闭按钮 */
+            margin: 0;
+            padding: 32px 32px 5px;
+            color: rgba(255, 0, 0, 0.5);
+            font-weight: normal;
+            font-size: 14px;
+            line-height: 16px;
+        }
+
+        .van-cell {
+            line-height: unset;
+
+            background: rgba(0, 0, 0, 0);
+            color: rgba(255, 255, 255, 1);
+            border: none
+        }
+
+        .menuBody {
+            overflow-y: auto;
+            padding-bottom: 46px;
+            background: rgba(0, 0, 0, 0);
+        }
+
+
+        .van-cell-group {
+            background: rgba(0, 0, 0, 0);
+        }
+
+        .van-hairline--top-bottom::after,
+        .van-hairline-unset--top-bottom::after {
+            border-width: 0px 0;
+
+        }
+
+
+        .van-stepper--round .van-stepper__minus {
+            color: #000;
+            background-color: #1989fa;
+            border: 1px solid #1989fa;
+
+        }
+
+        .van-stepper--round .van-stepper__plus {
+            color: #fff;
+            background-color: #1989fa;
+
+
+        }
+
+
+        .van-tabs__nav--card2 {
+            /*滑块*/
+            box-sizing: border-box;
+            height: 30px;
+            margin: 0 16px;
+            border: 0px solid #e9e9eb;
+        }
+
+
+
+
+
+        .van-switch {
+            position: relative;
+            display: inline-block;
+            box-sizing: content-box;
+            width: 50px;
+            height: 30px;
+            font-size: 30px;
+            background: rgba(0, 0, 0, 0);
+        }
+
+        .van-switch__node {
+            /* 开关按钮 */
+            position: absolute;
+            font-size: 20px;
+            top: 2px;
+            left: 2px;
+            width: 26px;
+            height: 26px;
+            font-size: inherit;
+            background-color: #fff;
+            box-shadow: 0 3px 1px 0 rgb(0 0 0 / 2%), 0 2px 2px 0 rgb(0 0 0 / 5%), 0 3px 3px 0 rgb(0 0 0 / 5%);
+            -webkit-transition: -webkit-transform .3s cubic-bezier(.3, 1.05, .4, 1.05);
+            transition: -webkit-transform .3s cubic-bezier(.3, 1.05, .4, 1.05);
+            transition: transform .3s cubic-bezier(.3, 1.05, .4, 1.05);
+            transition: transform .3s cubic-bezier(.3, 1.05, .4, 1.05), -webkit-transform .3s cubic-bezier(.3, 1.05, .4, 1.05);
+
+        }
+
+
+        .van-stepper__minus,
+        .van-stepper__plus {
+            position: relative;
+            box-sizing: border-box;
+            width: 28px;
+            height: 28px;
+            margin: 0;
+            padding: 0;
+            color: #323233;
+            vertical-align: middle;
+            background-color: #e9e9eb;
+            border: 0;
+            cursor: pointer;
+            background: rgba(0, 0, 0, 0)
+        }
+
+        .van-stepper__input {
+            box-sizing: border-box;
+            width: 32px;
+            height: 28px;
+            margin: 0 0px;
+            padding: 0;
+            color: #323233;
+            font-size: 14px;
+            line-height: normal;
+            text-align: center;
+            vertical-align: middle;
+
+            border: 0;
+            border-width: 1px 0;
+            border-radius: 0;
+            background: rgba(0, 0, 0, 0)
+        }
+
+        .van-stepper__minus::before,
+        .van-stepper__plus::before {
+            width: 50%;
+            height: 2px;
+
+        }
+
+        .van-stepper__minus::after,
+        .van-stepper__plus::after {
+            width: 2px;
+            height: 50%;
+
+        }
+
+        .van-slider__button {
+            width: 24px;
+            height: 24px;
+            background-color: #fff;
+            border-radius: 50%;
+            box-shadow: 0 2px 5px rgb(0 0 0 / 20%);
+
+        }
+
+
+        .van-cell::after {
+            position: absolute;
+            box-sizing: border-box;
+            content: ' ';
+            pointer-events: none;
+            right: 0px;
+            bottom: 0;
+            left: 16px;
+            border-bottom: 0.8px solid #cacaca;
+            -webkit-transform: scaleY(.5);
+            transform: scaleY(.5);
+
+        }
+
+
+        .van-nav-bar {
+            position: relative;
+            z-index: 1;
+            line-height: 22px;
+            text-align: center;
+            color: #FFFFFF;
+            -webkit-user-select: none;
+            user-select: none;
+            background: rgba(0, 0, 0, 0);
+        }
+
+
+
+        .van-stepper__minus {
+            border-radius: 5px 0 0 5px;
+        }
+
+        .van-stepper__plus {
+            border-radius: 0 5px 5px 0;
+        }
+
+
+        .van-hairline--bottom::after {
+            border-bottom-width: 0px;
+
+        }
+    </style>
+</head>
+
+<body onload="checkDate()" style="background:url(/1.jpg)">
+    <div id="app">
+        <div class="aymenu" ref="menuMain">
+            <div @touchstart="titleTouchStart" @touchmove="titleTouchMove">
+                <van-nav-bar title="木瞳">
+                    <template #right>
+                        <van-icon @click="closeMenu" name="close" color="rgba(255,0,0,0.5)" size="24" />
+                    </template>
+                </van-nav-bar>
+            </div>
+            <div class="menuBody" ref="menuBody">
+                <van-cell-group inset>
+
+                    <van-cell center title="视距">
+                        <template #right-icon>
+                            <van-switch @change="shiju" v-model="isshiju" size="20" active-color="#34c85a"
+                                inactive-color="#e9e9eb" />
+                        </template>
+                    </van-cell>
+                    <van-cell center title="倍数">
+                        <template #right-icon>
+                            <van-slider v-model="horizon" @change="changehorizon" :step="0.1" :min="1.2" :max="4"
+                                bar-length="100px" bar-height="10px" style="width: 30%;">
+                            </van-slider>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <van-stepper v-model="horizon" @change="changehorizon" :step="0.1" :decimal-length="1"
+                                :min="1.2" :max="4" button-size="26" disable-input />
+                        </template>
+                    </van-cell>
+                </van-cell-group>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+
+
+    let app = new Vue({
+        el: '#app',
+        data() {
+            return {
+
+                isshiju: false, //视距开关
+                horizon: 1.2, //视距大小
+            }
+        },
+        mounted() {
+            this.setRect(340, 184);
+        },
+        methods: {
+
+            setRect(w, h, x = -1, y = -1) {
+                var boxW = w;
+                var boxH = h;
+
+                var ayMenu = this.$refs.menuMain;
+                ayMenu.style.width = `${boxW}px`;
+                ayMenu.style.height = `${boxH}px`;
+                if (x == -1) ayMenu.style.left = `calc(50% - ${boxW / 2}px)`;
+                if (y == -1) ayMenu.style.top = `calc(50% - ${boxH / 2}px)`;
+
+                var menuBody = this.$refs.menuBody;
+                menuBody.style.height = `${boxH - 46 - 40}px`;
+            },
+            titleTouchStart(event) {
+                this.touchStartX = parseInt(event.touches[0].clientX);
+                this.touchStartY = parseInt(event.touches[0].clientY);
+
+                var ayMenu = this.$refs.menuMain;
+                this.menuLastX = ayMenu.offsetLeft;
+                this.menuLastY = ayMenu.offsetTop;
+            },
+            titleTouchMove(event) {
+                event.preventDefault();
+                var distanceX = event.touches[0].clientX - this.touchStartX;
+                var distanceY = event.touches[0].clientY - this.touchStartY;
+
+                var ayMenu = this.$refs.menuMain;
+                ayMenu.style.left = this.menuLastX + distanceX + "px";
+                ayMenu.style.top = this.menuLastY + distanceY + "px";
+            },
+
+
+            closeMenu() {
+                var menu = document.querySelector("#app");
+                menu.style.display = "none";
+                setWindowTouch(false);
+            },
+
+
+            shiju() {
+                h5gg.clearResults();
+                h5gg.searchNumber('1.2', 'F32', '0x110000000', '0x130000000');
+                h5gg.searchNearby('0.5', 'F32', '0x30');
+                h5gg.searchNearby('1.0', 'F32', '0x30');
+                h5gg.searchNumber('1.2', 'F32', '0x110000000', '0x130000000');
+                count = h5gg.getResultsCount();
+                window.list = h5gg.getResults(count);
+                changehorizen();
+            },
+            changehorizon() {
+                count = h5gg.getResultsCount();
+                window.list = h5gg.getResults(count);
+                if (window.list.length > 0) {
+                    for (var i = 0; i < window.list.length; i++) {
+                        h5gg.setValue(window.list[i].address, app.horizon, 'F32');
+                    }
+                }
+            },
+
+        }
+    });
+
+
+
+    setButtonImage('https://s1.ax1x.com/2022/11/23/z8LIPO.jpg'); //从网址链接加载并替换悬浮按钮图标
+    //脚本放在最后面, body加载完之后再执行
+    //激活webkit的button:active
+    document.body.addEventListener('touchstart', function () { });
+    //设置不可拖动
+    setWindowDrag(0, 0, 0, 0);
+    //设置按照屏幕像素尺寸绘图(高清模式)
+    var iosScale = window.devicePixelRatio;
+
+    let sWidth = 0; //屏幕宽
+    let sHeight = 0; //屏幕高
+    //创建画布，布满整个屏幕
+    let canvasDom = document.createElement("canvas");
+    document.body.appendChild(canvasDom);
+    canvasDom.style.height = "100%";
+    canvasDom.style.width = "100%";
+    //获取窗口信息
+    const layout = function () {
+        //window.orientation是设备握持方向, 不是屏幕显示方向
+        if (window.lastorientation == window.orientation) return;
+        window.lastorientation = window.orientation;
+        //window.screen中的宽高不会随着屏幕旋转更新(只会在初始化的时候固定)
+        if (Math.abs(window.orientation) == 90) {
+            //横屏模式
+            setWindowRect(0, 0, window.screen.height, window.screen.width);
+            canvasDom.width = window.screen.height * iosScale;
+            canvasDom.height = window.screen.width * iosScale;
+            sWidth = window.screen.height;
+            sHeight = window.screen.width;
+        } else {
+            //竖屏模式
+            setWindowRect(0, 0, window.screen.width, window.screen.height);
+            canvasDom.height = window.screen.height * iosScale;
+            canvasDom.width = window.screen.width * iosScale;
+            sWidth = window.screen.width;
+            sHeight = window.screen.height;
+        }
+    }
+
+    layout(); //设置旋转屏幕时自动调整布局和画布
+    window.addEventListener("orientationchange", layout, false);
+
+    //*设置自定义的悬浮按钮图标点击动作
+    setButtonAction(function () {
+        let menu = document.querySelector("#app");
+        if (menu.style.display == 'none') {
+            menu.style.display = 'block';
+            //隐藏菜单之后, 设置触控穿透悬浮窗口
+            setWindowTouch(true);
+        } else {
+            menu.style.display = 'none';
+            //显示菜单之后, 设置触控不可穿透悬浮窗口
+            setWindowTouch(false);
+        }
+    });
+
+
+
+     //一  秒  一  次  
+</script>
+
+</html>
