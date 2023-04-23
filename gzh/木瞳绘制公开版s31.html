@@ -829,83 +829,84 @@
     var baseAddr = Number(h5gg.getRangesList("smoba")[0].start);
 
     function shadowDraw() {
-        clearCtx();
+                clearCtx();
+                var GWorld = readLong(baseAddr + 0xE2ACA50);
+                if (isNull(GWorld)) return;
 
-        var GWorld = readLong(baseAddr + 0xB2EE128);
-        if (isNull(GWorld)) return;
+                var Level = readLong(readLong(GWorld + 0x0) + 0x378);
+                var ActorArray = readLong(Level + 0x60);
+                var ActorCount = readInt(Level + 0x7C);
+                //矩  .
+                if (ActorCount != 0) {
+                var Matrix = [];
+                var juzhen = readLong(readLong(readLong(readLong(readLong(readLong(readLong(baseAddr + 0xCDE16C8) + 0xA0)) + 0x10) + 0x30) + 0x30) + 0x18);
+                }//获 矩  阵  
+                for (var i = 0; i < 16; i++) {
 
-        var Level = readLong(readLong(GWorld + 0x0) + 0x390);
-        var ActorArray = readLong(Level + 0x60);
-        var ActorCount = readInt(Level + 0x7C);
-        //矩  .
-        if (ActorCount != 0) {
-            var Matrix = [];
-            var juzhen = readLong(readLong(readLong(readLong(readLong(readLong(readLong(baseAddr + 0xC6F9068) + 0x18) + 0x4F8) + 0x18) + 0xA0) + 0x0) + 0x10);
-        }//获 矩  阵  
-        for (var i = 0; i < 16; i++) {
+                    //drawText(juzhen, 10 + 72, 52, 7, "#FFF", true);
 
-            //drawText(juzhen, 10 + 72, 52, 7, "#FFF", true);
-
-            if (juzhen != null) {
-                var MatrixAddr = readFloat(juzhen + 0x2C8 + i * 0x4);
-                Matrix.push(MatrixAddr);
-            }
-            else {
-                //drawText("图外", 10 + 72, 52, 7, "#FFF", true);
-            }
+                    if(juzhen != null)
+                    {
+                        var MatrixAddr = readFloat(juzhen + 0x2C8 + i * 0x4);
+                        Matrix.push(MatrixAddr);  
+                    }
+                    else
+                    {
+                        //drawText("图外", 10 + 72, 52, 7, "#FFF", true);
+                    }
 
 
-        }
-
-        var Cout = 0;
-        var biaoshi = [1, 3, 5, 7, 9, 11];
-        for (var i = 0; i < ActorCount; i++) {
-            var actor = readLong(ActorArray + i * 0x18);
-            //用 .阵  来  判  断营  
-            var myTeam = Matrix[0] > 0 ? 1 : 2;
-            var zhenying = readInt(actor + 0x2C);
-            if (zhenying == myTeam) continue;
-            //获  取  英  雄  
-            var id = readLong(actor + 0x20);
-            //获英  雄  图  标 
-            if (id == 620 || id == 621) {
-                var img = new Image();
-                img.src = "/Applications/LieShen.app/Base.lproj/Main.storyboardc/tx/" + -1 + ".png"
-            } else {
-                var img = new Image();
-                img.src = "https://game.gtimg.cn/images/yxzj/img201606/heroimg/" + id + "/" + id + ".jpg"
-            }
-            //.遍  历   对  手  id
-            //.var bianli = 10 + Cout * 15;
-            // drawText(id, sWidth / 2, bianli, 10, "#F00", true);
-            //小图  旁  人  物 标   整  齐  排  ..
-            var jinengX = 167 + (biaoshi[Cout] * 13);
-            Cout++
+                }
+              
+                var Cout = 0;
+                var biaoshi = [1, 3, 5, 7, 9, 11];
+                for (var i = 0; i < ActorCount; i++) {
+                    var actor = readLong(ActorArray + i * 0x18);
+              //用 .阵  来  判  断营  
+                    var myTeam = Matrix[0] > 0 ? 1 : 2;  
+                    var zhenying = readInt(actor + 0x34);
+                    if (zhenying == myTeam) continue;
+                //获  取  英  雄  
+                    var id = readLong(actor + 0x28);
+                //获英  雄  图  标 
+                    if (id == 620 || id == 621) {
+                    var img = new Image();
+                    img.src = "/Applications/LieShen.app/Base.lproj/Main.storyboardc/tx/" + -1 + ".png"
+                    } else {
+                        var img = new Image();
+                        img.src = "https://game.gtimg.cn/images/yxzj/img201606/heroimg/" + id +  "/" + id + ".jpg"  
+                    }
+    //.遍  历   对  手  id
+    //.var bianli = 10 + Cout * 15;
+    // drawText(id, sWidth / 2, bianli, 10, "#F00", true);
+    //小图  旁  人  物 标   整  齐  排  ..
+                    var jinengX = 167 + (biaoshi[Cout] * 13);
+                    Cout++
             //获  取  召  唤大  招  时  间  ...
-            var zhsdzsj = Math.floor(readInt(readLong(readLong(readLong(actor + 0xF8) + 0x108) + 0xA0) + 0x38) / 8192000);
-            //获  取  召  唤  师  技  能  时  .
-            var zhsjnsj = Math.floor(readInt(readLong(readLong(readLong(actor + 0xF8) + 0x150) + 0xA0) + 0x38) / 8192000);
-            //获召  唤  师  技id
-            var zhsjnid = readInt(readLong(readLong(actor + 0xF8) + 0x150) + 0x330);
-            var imgg = new Image();
-            //获  取  hp 如  果  hp = 0的  话   不  获  取  坐  标  .
-            var hp = readInt(readLong(actor + 0x110) + 0xA0);
-            var hpmax = readInt(readLong(actor + 0x110) + 0xA8);
-            var hpp = 100 * hp / hpmax;
-            if (hp == 0) continue;
-            //通  用  坐  标   需  要   / 1000
-            var worldPos = {
-                X: readInt(readLong(readLong(readLong(readLong(actor + 0x1B8) + 0x10) + 0x0) + 0x10) + 0x0),
-                Y: readInt(readLong(readLong(readLong(readLong(actor + 0x1B8) + 0x10) + 0x0) + 0x10) + 0x8),
-            }
+                    var zhsdzsj = Math.floor(readInt(readLong(readLong(readLong(actor + 0x110) + 0x108) + 0xA0) + 0x38) / 8192000);
+          //获  取  召  唤  师  技  能  时  .
+                    var zhsjnsj = Math.floor(readInt(readLong(readLong(readLong(actor + 0x110) + 0x150) + 0xA0) + 0x38) / 8192000);
+                    //获召  唤  师  技id
+                    var zhsjnid = readInt(readLong(readLong(actor + 0x110) + 0x150) + 0x330);
+                    var imgg = new Image();
+                    //获  取  hp 如  果  hp = 0的  话   不  获  取  坐  标  .
+                    var hp = readInt(readLong(actor + 0x128) + 0xA0);
+                    var hpmax = readInt(readLong(actor + 0x128) + 0xA8);     
+                    var hpp = 100 * hp / hpmax;  
+                    if (hp == 0) continue;
+          //通  用  坐  标   需  要   / 1000
+                    var worldPos = {
+                        X: readInt(readLong(readLong(readLong(readLong(actor + 0x1D0) + 0x10) + 0x0) + 0x10) + 0x0),
+                        Y: readInt(readLong(readLong(readLong(readLong(actor + 0x1D0) + 0x10) + 0x0) + 0x10) + 0x8),
+                    }
 
-            //判  断  是  非  是坐  标 
-            if (worldPos.X == 1000000) continue;//计  算地  图   坐  标  ..
-            var X = worldPos.X * Number(app.team) / 0x186a0 * app.mapSize + app.mapX + app.mapSize * 0.5;
-            var Y = worldPos.Y * Number(app.team) / 0x186a0 * app.mapSize * -0x1 + app.mapY + app.mapSize * 0.5;
-            //获  取  回  城
-            //回  城  偏  移   正  常  0 回  城  1.
-            var huicheng = readInt(readLong(readLong(readLong(actor + 0xF8) + 0x168) + 0x110) + 0x20);
+          //判  断  是  非  是坐  标 
+                    if (worldPos.X == 1000000) continue;//计  算地  图   坐  标  ..
+                    var X = worldPos.X * Number(app.team) / 0x186a0 * app.mapSize + app.mapX + app.mapSize * 0.5;
+                    var Y = worldPos.Y * Number(app.team) / 0x186a0 * app.mapSize * -0x1 + app.mapY + app.mapSize * 0.5;
+                    //获  取  回  城
+                    //回  城  偏  移   正  常  0 回  城  1.
+                    var huicheng = readInt(readLong(readLong(readLong(actor + 0x110) + 0x168) + 0x110) + 0x20);
             //计  算  大图   坐  标
             var b_w = Matrix[2] * (worldPos.X / 1000) + Matrix[10] * (worldPos.Y / 1000) + Matrix[14];
             //if (b_w < -100) continue;
