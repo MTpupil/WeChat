@@ -8,7 +8,8 @@
     "new":"https://www.icloud.com/shortcuts/1fc0de1b12f348c3b4d757a445d471a9",
     "vmsg":"为了保证大家关注公众号，每次去水印有5%的概率触发验证，触发验证后需要输入正确验证码才可以解锁，如不输入将一直处于锁定状态。\n\n由于页面缓存，数据有五分钟延迟，确认验证码无误，有可能是管理员在五分钟内更改了验证码，请等几分钟后再尝试。\n\n请在公众号：【木瞳科技Pro】回复“去水印”获取验证码。\n\n验证码经常更换，请保持关注公众号。\n\n⚠️注意：取关公众号会被拉黑，导致无法获取验证码。",
     "vcode":"3977",
-    "comapi":"https://apigjx.ivapp.cn/api/juhess.php?key=applet&type=miniprogram&url=",
+    "comapiold":"https://apigjx.ivapp.cn/api/juhess.php?key=applet&type=miniprogram&url=",
+    "comapi":"http://ainishiya.cn:2221/video?url="
     "twapi":"https://xxtwitter.com/zh-CN/",
     "xapi":"https://r84j4pyvi6.execute-api.us-east-1.amazonaws.com/Prod/video/",
     "qr":"https://open.weixin.qq.com/qr/code?username=MTpupilPro"
