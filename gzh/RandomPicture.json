@@ -8,7 +8,6 @@
         "updateUrl":"https://www.icloud.com/shortcuts/162f1c1c8460488b858158a98f74b188",
         "updateMsg":"更新内容：测试功能",
         "apis": {
-            "买家秀": "aHR0cHM6Ly9hcGkudW9tZy5jb20vYXBpL3JhbmQuaW1nMw==",
             "微博": "aHR0cHM6Ly8zNjUwMDAwLnh5ei9hcGkvP21vZGU9MQ==",
             "instagram": "aHR0cHM6Ly8zNjUwMDAwLnh5ei9hcGkvP21vZGU9Mg==",
             "横版": "aHR0cHM6Ly8zNjUwMDAwLnh5ei9hcGkvMzYwLnBocD9jaWQ9Ng==",
