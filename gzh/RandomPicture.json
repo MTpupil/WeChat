@@ -2,6 +2,7 @@
     "msg": "success",
     "data": {
         "version": 1.0,
+        "selectTitle": "选择要获取的图片类型。\n点击完成可获取下一张，分享按钮可以保存图片。"
         "apis": {
             "买家秀": "aHR0cHM6Ly9hcGkudW9tZy5jb20vYXBpL3JhbmQuaW1nMw==",
             "微博": "aHR0cHM6Ly8zNjUwMDAwLnh5ei9hcGkvP21vZGU9MQ==",
