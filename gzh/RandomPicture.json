@@ -3,7 +3,7 @@
     "data": {
         "version": 1.0,
         "selectTitle": "选择风格/类型\n点确定/完成刷新图片，点图片可分享保存",
-        "isNotify"1,
+        "isNotify":1,
         "notification":"公众号：木瞳科技Pro",
         "updateUrl":"https://www.icloud.com/shortcuts/162f1c1c8460488b858158a98f74b188",
         "updateMsg":"更新内容：测试功能",
