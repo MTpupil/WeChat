@@ -1,11 +1,11 @@
 {
     "msg": "success",
     "data": {
-        "version": 1.0,
+        "version": 1.1,
         "selectTitle": "选择风格/类型\n点确定/完成刷新图片，点图片可分享保存",
         "isNotify":1,
         "notification":"通知文本",
-        "updateUrl":"",
+        "updateUrl":"https://www.icloud.com/shortcuts/162f1c1c8460488b858158a98f74b188",
         "updateMsg":"新版本通知",
         "apis": {
             "买家秀": "aHR0cHM6Ly9hcGkudW9tZy5jb20vYXBpL3JhbmQuaW1nMw==",
