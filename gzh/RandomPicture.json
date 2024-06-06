@@ -5,7 +5,8 @@
         "selectTitle": "选择风格/类型\n点确定/完成刷新图片，点图片可分享保存",
         "isNotify":1,
         "notification":"通知文本"
-        "update":"",
+        "updateUrl":"",
+        "updateMsg":"新版本通知",
         "apis": {
             "买家秀": "aHR0cHM6Ly9hcGkudW9tZy5jb20vYXBpL3JhbmQuaW1nMw==",
             "微博": "aHR0cHM6Ly8zNjUwMDAwLnh5ei9hcGkvP21vZGU9MQ==",
