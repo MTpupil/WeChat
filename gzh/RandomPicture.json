@@ -4,7 +4,7 @@
         "version": 1.0,
         "selectTitle": "选择风格/类型\n点确定/完成刷新图片，点图片可分享保存",
         "isNotify":1,
-        "notification":"通知文本"
+        "notification":"通知文本",
         "updateUrl":"",
         "updateMsg":"新版本通知",
         "apis": {
