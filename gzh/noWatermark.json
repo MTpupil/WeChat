@@ -9,7 +9,7 @@
     "stopmsg":"停机更新中，请耐心等待...",
     "new":"https://www.icloud.com/shortcuts/f56f9b25e8d64f64878a9cffeb88955d",
     "vmsg":"为了保证大家关注公众号，每次去水印有5%的概率触发验证，触发验证后需要输入正确验证码才可以解锁，如不输入将一直处于锁定状态。\n\n请在公众号：【木瞳科技Pro】回复“去水印”获取验证码。\n\n⚠️注意：取关公众号会被拉黑，导致无法获取验证码。本项目公益无偿，不收取任何费用，不添加任何广告，希望大家可以保持关注公众号。",
-    "vcode":"4319",
+    "vcode":"6485",
     "comapi":"http://api.yujn.cn/api/dspjx.php?type=json&url=",
     "comapiold2":"http://ainishiya.cn:2221/video?url=",
     "comapiold3":"https://apiqsy.udd.icu/api/juhecs.php?url=",
